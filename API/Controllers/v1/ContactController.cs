@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Application.Features.Contacts.Commands.CreateContact;
+using Application.Features.Contacts.Queries.GetAllContacts;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace API.Controllers.v1
+{
+    [ApiVersion("1.0")]
+    public class ContactController : BaseApiController
+    {
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await Mediator.Send(new GetAllContactsQuery()));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(CreateContactCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+    }
+}
