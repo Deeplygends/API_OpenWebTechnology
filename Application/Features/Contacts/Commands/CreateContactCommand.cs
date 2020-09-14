@@ -15,11 +15,11 @@ using MediatR;
 namespace Application.Features.Contacts.Commands.CreateContact
 {
 
-    public partial class CreateContactCommand : IRequest<Response<int>>
+    public partial class CreateContactCommand : ContactDto, IRequest<Response<int>>
     {
-
+      
     }
-    public class CreateContactCommandHandler : IRequest<Response<int>>
+    public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, Response<int>>
     {
         private readonly IContactRepository _contactRepository;
         private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ namespace Application.Features.Contacts.Commands.CreateContact
             _mapper = mapper;
         }
 
-        public async Task<Response<int>> Handle(ContactDto request, CancellationToken cancellationToken)
+        public async Task<Response<int>> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = _mapper.Map<Contact>(request);
             await _contactRepository.AddAsync(contact);
