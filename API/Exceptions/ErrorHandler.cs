@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Application.Wrapper;
+using Application.Exceptions;
 using Microsoft.AspNetCore.Http;
-using System.Net;
+
 using System.Text.Json;
 
 namespace API.Exceptions
 {
-    public class ErrorHandlerMiddleware
+    public class ErrorHandler
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandler(RequestDelegate next)
         {
             _next = next;
         }
@@ -31,14 +31,12 @@ namespace API.Exceptions
                 var response = context.Response;
                 response.ContentType = "application/json";
                 var responseModel = new Response<string>() { Succeeded = false, Message = error?.Message };
-
                 switch (error)
                 {
-                   
                     case ValidationException e:
                         // custom application error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        responseModel.Errors.Add(e.Message);
+                        responseModel.Errors.AddRange(e.Errors);
                         break;
                     case KeyNotFoundException e:
                         // not found error
