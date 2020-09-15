@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Contacts.Commands;
 using Application.Features.Contacts.Commands.CreateContact;
 using Application.Features.Contacts.Queries.GetAllContacts;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,11 @@ namespace API.Controllers.v1
 
         [HttpPost]
         public async Task<IActionResult> Post(CreateContactCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(DeleteContactCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
