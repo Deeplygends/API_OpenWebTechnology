@@ -17,7 +17,6 @@ namespace Application.Features.Contacts.Commands.CreateContact
 
     public partial class CreateContactCommand : ContactDto, IRequest<Response<int>>
     {
-      
     }
     public class CreateContactCommandHandler : IRequestHandler<CreateContactCommand, Response<int>>
     {
