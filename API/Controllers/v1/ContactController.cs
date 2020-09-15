@@ -24,6 +24,12 @@ namespace API.Controllers.v1
         {
             return Ok(await Mediator.Send(command));
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Put(UpdateContactCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
         [HttpDelete]
         public async Task<IActionResult> Delete(DeleteContactCommand command)
         {
