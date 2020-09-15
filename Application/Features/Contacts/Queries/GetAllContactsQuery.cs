@@ -9,6 +9,7 @@ using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enum;
 using MediatR;
 
 namespace Application.Features.Contacts.Queries.GetAllContacts
@@ -33,7 +34,7 @@ namespace Application.Features.Contacts.Queries.GetAllContacts
         {
             var contacts = await _contactRepository.GetAllAsync();
             var result = _mapper.Map<IEnumerable<ContactDto>>(contacts);
-            return new Response<IEnumerable<ContactDto>>(result);
+            return new Response<IEnumerable<ContactDto>>(result, "", HttpResponseTypeEnum.Ok); 
         }
     }
 }

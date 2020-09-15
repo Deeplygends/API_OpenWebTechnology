@@ -8,6 +8,7 @@ using Application.Exceptions;
 using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
+using Domain.Enum;
 using FluentValidation.Results;
 using MediatR;
 
@@ -38,7 +39,7 @@ namespace Application.Features.Contacts.Queries
                 var failure = new ValidationFailure("Id", "The id is not present in the database");
                 throw new ValidationException(new List<ValidationFailure>() { failure });
             }
-            return new Response<ContactDto>(_mapper.Map<ContactDto>(contact));
+            return new Response<ContactDto>(_mapper.Map<ContactDto>(contact), "", HttpResponseTypeEnum.Ok);
 
         }
     }

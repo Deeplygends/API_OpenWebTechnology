@@ -10,6 +10,7 @@ using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enum;
 using MediatR;
 
 namespace Application.Features.Contacts.Commands.CreateContact
@@ -33,7 +34,7 @@ namespace Application.Features.Contacts.Commands.CreateContact
         {
             var contact = _mapper.Map<Contact>(request);
             await _contactRepository.AddAsync(contact);
-            return new Response<int>(contact.Id);
+            return new Response<int>(contact.Id, "Created", HttpResponseTypeEnum.Created);
         }
     }
 }
