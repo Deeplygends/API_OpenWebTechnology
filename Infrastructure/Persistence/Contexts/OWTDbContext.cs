@@ -20,11 +20,22 @@ namespace Infrastructure.Persistence.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ContactSkill>()
+                .HasKey(x => new { x.IdContact, x.IdSkill });
+            modelBuilder.Entity<ContactSkill>()
+                .HasOne(c => c.Contact)
+                .WithMany(c => c.ContactLink)
+                .HasForeignKey(c => c.IdContact);
+            modelBuilder.Entity<ContactSkill>()
+                .HasOne(c => c.Skill)
+                .WithMany(c => c.SkillLink)
+                .HasForeignKey(c => c.IdSkill);
         }
 
         #region Entities
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Skill> Skills {get; set;}
+        public DbSet<ContactSkill> ContactSkills { get; set; }
         #endregion
     }
 }
