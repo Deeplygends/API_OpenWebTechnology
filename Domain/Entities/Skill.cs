@@ -9,7 +9,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public SkillLevel Level { get; set; }
+        public string Level { get; set; }
         public ICollection<ContactSkill> SkillLink { get; set; }
     }
 }

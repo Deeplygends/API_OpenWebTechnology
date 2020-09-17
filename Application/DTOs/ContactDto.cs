@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.Entities;
 
 namespace Application.DTOs
 {
@@ -12,5 +13,6 @@ namespace Application.DTOs
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+
     }
 }
