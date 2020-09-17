@@ -35,6 +35,20 @@ namespace API.Controllers.v1
             var response = await Mediator.Send(command);
             return HttpResponseResult(response);
         }
+        [HttpPut]
+        [Route("skills")]
+        public async Task<IActionResult> Put(UpdateSkillCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return HttpResponseResult(response);
+        }
+        [HttpDelete]
+        [Route("skills")]
+        public async Task<IActionResult> Delete(DeleteSkillCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return HttpResponseResult(response);
+        }
 
     }
 }
