@@ -1,6 +1,6 @@
 ﻿using System;
 using Application.Wrapper;
-using Domain.Enum;
+using Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCaching;
@@ -25,7 +25,7 @@ namespace API.Controllers
                 case HttpResponseTypeEnum.Badrequest:
                     return BadRequest(response);
                 case HttpResponseTypeEnum.Created:
-                    return Created(new Uri("/"), response);
+                    return Ok(response);
                 case HttpResponseTypeEnum.Conflict:
                     return Conflict(response);
                 case HttpResponseTypeEnum.Unauthorized:

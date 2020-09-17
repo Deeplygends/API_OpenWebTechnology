@@ -1,4 +1,6 @@
-﻿namespace Application.DTOs
+﻿using Domain.Enums;
+
+namespace Application.DTOs
 {
     public class SkillDto
     {

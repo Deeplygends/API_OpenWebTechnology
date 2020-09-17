@@ -9,7 +9,7 @@ using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
 using Domain.Entities;
-using Domain.Enum;
+using Domain.Enums;
 using MediatR;
 
 namespace Application.Features.Contacts.Queries.GetAllContacts

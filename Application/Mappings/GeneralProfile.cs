@@ -5,6 +5,7 @@ using System.Text;
 using Application.DTOs;
 using Application.Features.Contacts.Commands.CreateContact;
 using Application.Features.Contacts.Queries.GetAllContacts;
+using Application.Features.Skill.Commands;
 using AutoMapper;
 using Domain.Entities;
 
@@ -17,7 +18,8 @@ namespace Application.Mappings
             CreateMap<CreateContactCommand, Contact>();
             CreateMap<Contact, ContactDto>().ReverseMap();
 
-            CreateMap<Skill, SkillDto>().ReverseMap();
+            CreateMap<Skill, SkillDto>();
+            CreateMap<CreateSkillCommand, Skill>();
         }
     }
 }

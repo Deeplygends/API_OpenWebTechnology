@@ -7,7 +7,7 @@ using Application.DTOs;
 using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
-using Domain.Enum;
+using Domain.Enums;
 using MediatR;
 
 namespace Application.Features.Skill.Queries
@@ -35,4 +35,6 @@ namespace Application.Features.Skill.Queries
             return new Response<IEnumerable<SkillDto>>(result, "", HttpResponseTypeEnum.Ok);
         }
     }
+
+    
 }

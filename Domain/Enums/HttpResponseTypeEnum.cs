@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Enum
+namespace Domain.Enums
 {
     public enum HttpResponseTypeEnum
     {

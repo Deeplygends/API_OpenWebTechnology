@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Domain.Enum;
+using Domain.Enums;
 
 namespace Domain.Entities
 {

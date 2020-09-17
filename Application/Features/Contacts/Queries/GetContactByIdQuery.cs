@@ -8,7 +8,7 @@ using Application.Exceptions;
 using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
-using Domain.Enum;
+using Domain.Enums;
 using FluentValidation.Results;
 using MediatR;
 

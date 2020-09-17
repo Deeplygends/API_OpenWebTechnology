@@ -32,7 +32,7 @@ namespace Application.Features.Contacts.Validator
                 .NotEmpty().WithMessage("{PropertyName} is required");
             RuleFor(c => c.PhoneNumber)
                 .Matches(new Regex("^([\\+]?[0-9]{1,3}[\\s.-][0-9]{1,12})([\\s.-]?[0-9]{1,4}?)$")).WithMessage("Enter a valid phone number please (ex : +33606060606 or 0033606060606)");
-            
+
 
         }
     }
