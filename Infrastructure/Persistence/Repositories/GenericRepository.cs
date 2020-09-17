@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Interfaces;
 using Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Infrastructure.Persistence.Repositories
 {
@@ -46,6 +47,11 @@ namespace Infrastructure.Persistence.Repositories
         public virtual async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public virtual async Task SaveChangesAsync()
+        {
             await _dbContext.SaveChangesAsync();
         }
     }

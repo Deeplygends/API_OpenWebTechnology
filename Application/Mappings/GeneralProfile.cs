@@ -21,6 +21,7 @@ namespace Application.Mappings
             CreateMap<Contact, ContactDto>().ReverseMap();
 
             CreateMap<Skill, SkillDto>();
+            CreateMap<SkillDto, Skill>();
             CreateMap<UpdateSkillCommand, Skill>();
             CreateMap<CreateSkillCommand, Skill>();
         }
