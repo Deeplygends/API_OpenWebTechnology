@@ -29,7 +29,7 @@ namespace Infrastructure
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IContactRepository, ContactRepository>();
-
+            services.AddTransient<ISkillRepository, SkillRepository>();
             #endregion
         }
     }

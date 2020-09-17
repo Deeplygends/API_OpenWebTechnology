@@ -8,6 +8,7 @@ using Application.Exceptions;
 using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
+using Domain.Enums;
 using FluentValidation.Results;
 using MediatR;
 
@@ -24,7 +25,7 @@ namespace Application.Features.Contacts.Commands
         private readonly IMapper _mapper;
 
         public DeleteContactCommandHandler(IContactRepository contactRepository, IMapper mapper)
-        {
+        {  
             _mapper = mapper;
             _contactRepository = contactRepository;
         }
@@ -39,7 +40,7 @@ namespace Application.Features.Contacts.Commands
                 throw new ValidationException(new List<ValidationFailure>() { failure });
             }
             await _contactRepository.DeleteAsync(contact); 
-            return new Response<int>(request.Id);
+            return new Response<int>(request.Id, "Ressource Deleted", HttpResponseTypeEnum.Ok);
         }
     }
 }

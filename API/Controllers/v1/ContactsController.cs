@@ -12,36 +12,40 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers.v1
 {
     [ApiVersion("1.0")]
-    public class ContactController : BaseApiController
+    public class ContactsController : BaseApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllContactsQuery()));
+            var response = await Mediator.Send(new GetAllContactsQuery());
+            return HttpResponseResult(response);
         }
 
         [HttpGet("{id}")]
-
-    public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(await Mediator.Send(new GetContactByIdQuery(){ Id = id }));
+            var response = await Mediator.Send(new GetContactByIdQuery() {Id = id});
+            return HttpResponseResult(response);
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(CreateContactCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var response = await Mediator.Send(command);
+            return HttpResponseResult(response);
         }
 
         [HttpPut]
         public async Task<IActionResult> Put(UpdateContactCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var response = await Mediator.Send(command);
+            return HttpResponseResult(response);
         }
         [HttpDelete]
         public async Task<IActionResult> Delete(DeleteContactCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            var response = await Mediator.Send(command);
+            return HttpResponseResult(response);
         }
     }
 }

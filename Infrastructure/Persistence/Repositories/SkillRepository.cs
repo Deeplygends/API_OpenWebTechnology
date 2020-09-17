@@ -10,22 +10,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class ContactRepository : GenericRepository<Contact>, IContactRepository
+    public class SkillRepository : GenericRepository<Skill>, ISkillRepository
     {
-        private readonly DbSet<Contact> _contacts;
+        private readonly DbSet<Skill> _skills;
         private readonly DbSet<ContactSkill> _contactSkills;
 
-        public ContactRepository(OWTDbContext dbContext) : base(dbContext)
+        public SkillRepository(OWTDbContext dbContext) : base(dbContext)
         {
-            _contacts = dbContext.Set<Contact>();
+            _skills = dbContext.Set<Skill>();
             _contactSkills = dbContext.Set<ContactSkill>();
         }
 
-        public override async Task DeleteAsync(Contact contact)
+        public override async Task DeleteAsync(Skill skill)
         {
-            var linksToDelete = _contactSkills.Where(x => x.IdContact == contact.Id);
+            var linksToDelete = _contactSkills.Where(x => x.IdSkill == skill.Id);
             _contactSkills.RemoveRange(linksToDelete);
-            _contacts.Remove(contact);
+            _skills.Remove(skill);
         }
     }
 }

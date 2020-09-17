@@ -9,6 +9,7 @@ using Application.Interfaces.Repositories;
 using Application.Wrapper;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using FluentValidation.Results;
 using MediatR;
 
@@ -35,7 +36,7 @@ namespace Application.Features.Contacts.Commands
             try
             {
                 await _contactRepository.UpdateAsync(contact);
-                return new Response<UpdateContactCommand>(request);
+                return new Response<UpdateContactCommand>(request, "", HttpResponseTypeEnum.NoContent);
             }
             catch (Exception e)
             {
