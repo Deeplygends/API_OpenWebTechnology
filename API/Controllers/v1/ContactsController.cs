@@ -15,15 +15,13 @@ namespace API.Controllers.v1
     public class ContactsController : BaseApiController
     {
         [HttpGet]
-        [Route("contacts")]
         public async Task<IActionResult> GetAll()
         {
             var response = await Mediator.Send(new GetAllContactsQuery());
             return HttpResponseResult(response);
         }
 
-        [HttpGet]
-        [Route("contacts/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var response = await Mediator.Send(new GetContactByIdQuery() {Id = id});
@@ -31,7 +29,6 @@ namespace API.Controllers.v1
         }
 
         [HttpPost]
-        [Route("contacts")]
         public async Task<IActionResult> Post(CreateContactCommand command)
         {
             var response = await Mediator.Send(command);
@@ -39,14 +36,12 @@ namespace API.Controllers.v1
         }
 
         [HttpPut]
-        [Route("contacts")]
         public async Task<IActionResult> Put(UpdateContactCommand command)
         {
             var response = await Mediator.Send(command);
             return HttpResponseResult(response);
         }
         [HttpDelete]
-        [Route("contacts")]
         public async Task<IActionResult> Delete(DeleteContactCommand command)
         {
             var response = await Mediator.Send(command);

@@ -13,7 +13,6 @@ namespace API.Controllers.v1
     public class SkillsController : BaseApiController
     {
         [HttpGet]
-        [Route("skills")]
         public async Task<IActionResult> GetAll()
         {
             var response = await Mediator.Send(new GetAllSkillsQuery());
@@ -21,7 +20,7 @@ namespace API.Controllers.v1
         }
 
         [HttpGet]
-        [Route("skills/levels")]
+        [Route("levels")]
         public async Task<IActionResult> GetAllLevels()
         {
             var response = await Mediator.Send(new GetAllSkillLevelQuery());
@@ -29,21 +28,18 @@ namespace API.Controllers.v1
         }
 
         [HttpPost]
-        [Route("skills")]
         public async Task<IActionResult> Post(CreateSkillCommand command)
         {
             var response = await Mediator.Send(command);
             return HttpResponseResult(response);
         }
         [HttpPut]
-        [Route("skills")]
         public async Task<IActionResult> Put(UpdateSkillCommand command)
         {
             var response = await Mediator.Send(command);
             return HttpResponseResult(response);
         }
         [HttpDelete]
-        [Route("skills")]
         public async Task<IActionResult> Delete(DeleteSkillCommand command)
         {
             var response = await Mediator.Send(command);
