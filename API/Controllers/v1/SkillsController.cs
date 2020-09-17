@@ -13,13 +13,23 @@ namespace API.Controllers.v1
     public class SkillsController : BaseApiController
     {
         [HttpGet]
+        [Route("skills")]
         public async Task<IActionResult> GetAll()
         {
             var response = await Mediator.Send(new GetAllSkillsQuery());
             return HttpResponseResult(response);
         }
 
+        [HttpGet]
+        [Route("skills/levels")]
+        public async Task<IActionResult> GetAllLevels()
+        {
+            var response = await Mediator.Send(new GetAllSkillLevelQuery());
+            return HttpResponseResult(response);
+        }
+
         [HttpPost]
+        [Route("skills")]
         public async Task<IActionResult> Post(CreateSkillCommand command)
         {
             var response = await Mediator.Send(command);
