@@ -35,7 +35,7 @@ namespace Application.Features.Skill.Commands
             try
             {
                 await _skillRepository.UpdateAsync(skill);
-                return new Response<UpdateSkillCommand>(request, "Ressource updated", HttpResponseTypeEnum.Created);
+                return new Response<UpdateSkillCommand>(request, "Ressource updated", HttpResponseTypeEnum.Ok);
             }
             catch (Exception e)
             {

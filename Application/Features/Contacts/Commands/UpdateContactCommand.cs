@@ -41,7 +41,7 @@ namespace Application.Features.Contacts.Commands
             catch (Exception e)
             {
                 var failure = new ValidationFailure("Id", "id not found in the database, have been changed or deleted");
-                throw new ValidationException(new List<ValidationFailure>() { failure });
+                throw new ValidationException(new List<ValidationFailure>() { failure }, HttpResponseTypeEnum.NotFound);
             }
             
         }

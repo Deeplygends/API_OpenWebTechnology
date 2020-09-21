@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Features.Skill.Commands;
 using Application.Features.Skill.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.v2
+namespace API.Controllers.v3
 {
-    [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
+    [Authorize]
     public class SkillsController : BaseApiController
     {
         /// <summary>

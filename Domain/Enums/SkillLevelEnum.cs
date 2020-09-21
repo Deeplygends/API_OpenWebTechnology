@@ -6,7 +6,7 @@ namespace Domain.Enums
 {
     public enum  SkillLevelEnum
     {
-        BabyPoney,
+        BabyPony,
         Beginner,
         Intermediate,
         Expert,

@@ -37,7 +37,7 @@ namespace Application.Features.Contacts.Commands
             if (contact == null)
             {
                 var failure = new ValidationFailure("Id", "The id is not a valid id");
-                throw new ValidationException(new List<ValidationFailure>() { failure });
+                throw new ValidationException(new List<ValidationFailure>() { failure }, HttpResponseTypeEnum.NotFound);
             }
             await _contactRepository.DeleteAsync(contact); 
             return new Response<int>(request.Id, "Ressource Deleted", HttpResponseTypeEnum.Ok);

@@ -9,6 +9,7 @@ using Application.Wrapper;
 using AutoMapper;
 using Domain.Enums;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Application.Features.Contacts.Commands
 {

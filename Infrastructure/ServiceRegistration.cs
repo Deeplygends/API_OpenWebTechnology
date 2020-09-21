@@ -1,6 +1,8 @@
 ﻿
+using Application.Common.Interfaces;
 using Application.Interfaces;
 using Application.Interfaces.Repositories;
+using Domain.Entities;
 using Infrastructure.Persistence.Contexts;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +32,9 @@ namespace Infrastructure
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IContactRepository, ContactRepository>();
             services.AddTransient<ISkillRepository, SkillRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+
             #endregion
         }
     }

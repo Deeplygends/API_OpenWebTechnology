@@ -35,11 +35,10 @@ namespace Application.Features.Skill.Commands
         {
             var skill = _mapper.Map<Domain.Entities.Skill>(request);
             var skills = await _skillRepository.GetAllAsync();
-            var listenum = Enum.GetNames(typeof(SkillLevelEnum)).ToList();
             if (skills.ToList().Any(x => x.Name.ToUpper() == skill.Name.ToUpper() && x.Level == skill.Level))
             {
                 var failure = new ValidationFailure("AlreadyExist", "The ressource already exists in the database");
-                throw new ValidationException(new List<ValidationFailure>() { failure });
+                throw new ValidationException(new List<ValidationFailure>() { failure }, HttpResponseTypeEnum.Conflict);
             }
             await _skillRepository.AddAsync(skill);
             return new Response<int>(skill.Id, "Created", HttpResponseTypeEnum.Created);

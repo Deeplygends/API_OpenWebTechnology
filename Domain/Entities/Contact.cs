@@ -15,5 +15,6 @@ namespace Domain.Entities
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public virtual ICollection<ContactSkill> ContactLink { get; set; }
+        public User User { get; set; }
     }
 }

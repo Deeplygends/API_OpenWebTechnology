@@ -3,13 +3,23 @@ using Application.DTOs;
 using Application.Features.Contacts.Commands;
 using Application.Features.Contacts.Queries;
 using Application.Features.Contacts.Queries.GetAllContacts;
+using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.v2
+namespace API.Controllers.v3
 {
-    [ApiVersion("2.0")]
+    [ApiVersion("3.0")]
+    [Authorize]
     public class ContactsController : BaseApiController
     {
+
+        private readonly IAuthorizationService _authorizationService;
+
+        public ContactsController(IAuthorizationService service)
+        {
+            _authorizationService = service;
+        }
         #region CRUD Contact
         /// <summary>
         /// Get All Contacts
@@ -23,6 +33,7 @@ namespace API.Controllers.v2
         [ProducesResponseType(200)]
         public async Task<IActionResult> GetAll()
         {
+            var test = User.FindFirst("sub")?.Value;
             var response = await Mediator.Send(new GetAllContactsQuery());
             return HttpResponseResult(response);
         }
@@ -170,11 +181,15 @@ namespace API.Controllers.v2
         [ProducesResponseType(400)]
         public async Task<IActionResult> AddSkillToContact(int id, [FromBody]SkillDto skill)
         {
+            
+
             var command = new AddSkillToContactCommand()
             {
                 IdContact = id,
                 Skill = skill
             };
+            var authorizationResult = await _authorizationService
+                .AuthorizeAsync(User, id.ToString(), "ContactPolicy");
 
             var response = await Mediator.Send(command);
             return HttpResponseResult(response);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistence.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
@@ -19,13 +20,14 @@ namespace Infrastructure.Persistence.Repositories
         {
             _contacts = dbContext.Set<Contact>();
             _contactSkills = dbContext.Set<ContactSkill>();
+            
         } 
 
-        public async Task AddSkillAsync(int idContact, Skill skill)
+        public async Task AddSkillAsync(int idContact, int idskill)
         {
             var contact = await _contacts.FindAsync(idContact);
             await _contactSkills.AddAsync(new ContactSkill()
-                { IdContact = idContact, IdSkill = skill.Id});
+                { IdContact = idContact, IdSkill = idskill });
             await SaveChangesAsync();
 
         }

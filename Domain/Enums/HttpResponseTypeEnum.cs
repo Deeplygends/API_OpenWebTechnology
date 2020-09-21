@@ -6,11 +6,12 @@ namespace Domain.Enums
 {
     public enum HttpResponseTypeEnum
     {
-        Ok,
-        Created,
-        Badrequest,
-        Unauthorized,
-        Conflict,
-        NoContent
+        Ok = 200,
+        Created = 201,
+        BadRequest = 400,
+        Unauthorized = 401,
+        Conflict = 409,
+        NoContent = 204,
+        NotFound = 404
     }
 }

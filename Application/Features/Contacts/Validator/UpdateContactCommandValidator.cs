@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using Application.Features.Contacts.Commands;
 using Application.Interfaces.Repositories;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace Application.Features.Contacts.Validator
 {
-    public class CreateContactCommandValidator : AbstractValidator<CreateContactCommand>
+    public class UpdateContactCommandValidator : AbstractValidator<UpdateContactCommand>
     {
         private readonly IContactRepository _contactRepository;
 
-        public CreateContactCommandValidator(IContactRepository contactRepository)
+        public UpdateContactCommandValidator(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
 

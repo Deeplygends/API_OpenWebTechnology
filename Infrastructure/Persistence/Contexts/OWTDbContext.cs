@@ -30,12 +30,17 @@ namespace Infrastructure.Persistence.Contexts
                 .HasOne(c => c.Skill)
                 .WithMany(c => c.SkillLink)
                 .HasForeignKey(c => c.IdSkill);
+            modelBuilder.Entity<Contact>()
+                .HasOne(c => c.User)
+                .WithOne(u => u.Contact)
+                .HasForeignKey<User>(u => u.IdContact);
         }
 
         #region Entities
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Skill> Skills {get; set;}
         public DbSet<ContactSkill> ContactSkills { get; set; }
+        public DbSet<User> Users { get; set; }
         #endregion
     }
 }

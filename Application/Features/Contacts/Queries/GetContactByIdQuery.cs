@@ -37,7 +37,7 @@ namespace Application.Features.Contacts.Queries
             if (contact == null)
             {
                 var failure = new ValidationFailure("Id", "The id is not present in the database");
-                throw new ValidationException(new List<ValidationFailure>() { failure });
+                throw new ValidationException(new List<ValidationFailure>() { failure }, HttpResponseTypeEnum.NotFound);
             }
             return new Response<ContactDto>(_mapper.Map<ContactDto>(contact), "", HttpResponseTypeEnum.Ok);
 

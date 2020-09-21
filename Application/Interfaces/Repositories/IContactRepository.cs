@@ -8,7 +8,7 @@ namespace Application.Interfaces.Repositories
 {
     public interface IContactRepository : IGenericRepository<Contact>
     {
-        Task AddSkillAsync(int idContact, Skill skill);
+        Task AddSkillAsync(int idContact, int idskill);
         Task RemoveSkillFromContactAsync(int idContact, int idSkill);
     }
 }

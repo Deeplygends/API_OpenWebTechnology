@@ -13,9 +13,11 @@ namespace Application.Exceptions
             Errors = new List<string>();
         }
         public List<string> Errors { get; }
-        public ValidationException(IEnumerable<ValidationFailure> failures)
+        public HttpResponseTypeEnum Type { get; set; }
+        public ValidationException(IEnumerable<ValidationFailure> failures, HttpResponseTypeEnum type = HttpResponseTypeEnum.BadRequest)
             : this()
         {
+            Type = type;
             foreach (var failure in failures)
             {
                 Errors.Add(failure.ErrorMessage);
