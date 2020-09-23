@@ -31,7 +31,9 @@ namespace Application.Features.Contacts.Validator
                 .NotNull()
                 .NotEmpty().WithMessage("{PropertyName} is required");
             RuleFor(c => c.PhoneNumber)
-                .Matches(new Regex("^([\\+]?[0-9]{1,3}[\\s.-][0-9]{1,12})([\\s.-]?[0-9]{1,4}?)||([\\+]?[0-9]{1,3}[0-9]{1,12})$")).WithMessage("Enter a valid phone number please (ex : +33606060606 or 0033606060606)");
+                .NotNull()
+                .NotEmpty().WithMessage("{PropertyName} is required")
+                .Matches(new Regex("^[\\+]?[0-9]{1,3}[0-9]{1,12}$")).WithMessage("Enter a valid phone number please (ex : +33606060606 or 0033606060606)");
 
 
         }
