@@ -41,7 +41,7 @@ namespace Application.IntegrationTests.Features.Skill.Queries
             var result = await SendAsync(query);
 
             result.Data.Should().NotBeNull();
-            result.Data.Level.Should().Be(addSkill.Name);
+            result.Data.Level.Should().Be(addSkill.Level);
             result.Data.Name.Should().Be(addSkill.Name);
         }
     }
