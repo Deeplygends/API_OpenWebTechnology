@@ -78,6 +78,30 @@ namespace API.Migrations
                     b.ToTable("Skills");
                 });
 
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdContact")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdContact")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Domain.Entities.ContactSkill", b =>
                 {
                     b.HasOne("Domain.Entities.Contact", "Contact")
@@ -89,6 +113,15 @@ namespace API.Migrations
                     b.HasOne("Domain.Entities.Skill", "Skill")
                         .WithMany("SkillLink")
                         .HasForeignKey("IdSkill")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.User", b =>
+                {
+                    b.HasOne("Domain.Entities.Contact", "Contact")
+                        .WithOne("User")
+                        .HasForeignKey("Domain.Entities.User", "IdContact")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

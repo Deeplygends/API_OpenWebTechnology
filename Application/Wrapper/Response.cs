@@ -11,16 +11,18 @@ namespace Application.Wrapper
         public string Message { get; set; }
         public T Data { get; set; }
 
+        public string Uri { get; set; }
         public HttpResponseTypeEnum HttpResponse { get; set; }
         public List<string> Errors { get; set; }
         public Response() { Errors = new List<string>(); }
 
-        public Response(T data, string message = null, HttpResponseTypeEnum httpType = HttpResponseTypeEnum.Ok) : this()
+        public Response(T data, string message = null, HttpResponseTypeEnum httpType = HttpResponseTypeEnum.Ok, string uri = "") : this()
         {
             HttpResponse = httpType;
             Succeeded = true;
             Message = message;
             Data = data;
+            Uri = uri;
         }
 
         public Response(string message) : this()

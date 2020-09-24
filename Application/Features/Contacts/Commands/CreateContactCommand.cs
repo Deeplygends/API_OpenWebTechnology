@@ -13,7 +13,7 @@ using Domain.Entities;
 using Domain.Enums;
 using MediatR;
 
-namespace Application.Features.Contacts.Commands.CreateContact
+namespace Application.Features.Contacts.Commands
 {
 
     public partial class CreateContactCommand : ContactDto, IRequest<Response<int>>
@@ -33,8 +33,8 @@ namespace Application.Features.Contacts.Commands.CreateContact
         public async Task<Response<int>> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
             var contact = _mapper.Map<Contact>(request);
-            await _contactRepository.AddAsync(contact);
-            return new Response<int>(contact.Id, "Created", HttpResponseTypeEnum.Created);
+            var add= await _contactRepository.AddAsync(contact);
+            return new Response<int>(contact.Id, "Created", HttpResponseTypeEnum.Created, $"contacts/{add.Id}");
         }
     }
 }

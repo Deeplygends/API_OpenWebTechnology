@@ -22,7 +22,7 @@ namespace API.Controllers
             {
                 case HttpResponseTypeEnum.Ok:
                     return Ok(response);
-                case HttpResponseTypeEnum.Badrequest:
+                case HttpResponseTypeEnum.BadRequest:
                     return BadRequest(response);
                 case HttpResponseTypeEnum.Created:
                     return Ok(response);

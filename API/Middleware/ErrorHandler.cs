@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 
 using System.Text.Json;
 
-namespace API.Exceptions
+namespace API.Middleware
 {
     public class ErrorHandler
     {
@@ -35,12 +35,8 @@ namespace API.Exceptions
                 {
                     case ValidationException e:
                         // custom application error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        response.StatusCode = (int)e.Type;
                         responseModel.Errors.AddRange(e.Errors);
-                        break;
-                    case KeyNotFoundException e:
-                        // not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
                     default:
                         // unhandled error

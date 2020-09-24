@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Skill.Queries;
 using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistence.Contexts;
@@ -26,6 +27,14 @@ namespace Infrastructure.Persistence.Repositories
             var linksToDelete = _contactSkills.Where(x => x.IdSkill == skill.Id);
             _contactSkills.RemoveRange(linksToDelete);
             _skills.Remove(skill);
+            await SaveChangesAsync();
+        }
+
+        public async Task<IReadOnlyList<Skill>> GetSkillsByContactId(int id)
+        {
+            return await _skills
+                .Where(x => x.SkillLink.Any(y => y.IdContact == id))
+                .ToListAsync();
         }
     }
 }
