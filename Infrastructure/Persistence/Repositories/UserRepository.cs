@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Xsl;
@@ -26,7 +27,15 @@ namespace Infrastructure.Persistence.Repositories
         }
         public async Task<bool> Authentificate(AuthentificationCommand command)
         {
-           var user = await _users.FirstOrDefaultAsync(x => x.Password == command.Password && x.Username == command.UserName);
+            var md5 = MD5.Create();
+            var password = UTF8Encoding.UTF8.GetBytes(command.Password);
+            var hash = md5.ComputeHash(password);
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+                sBuilder.Append(hash[i].ToString("x2"));
+            command.Password = sBuilder.ToString();
+
+            var user = await _users.FirstOrDefaultAsync(x => x.Password == command.Password && x.Username == command.UserName);
            if (user != null)
            {
                command.IdContact = user.IdContact;

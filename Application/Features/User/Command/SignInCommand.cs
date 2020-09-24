@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -53,6 +54,13 @@ namespace Application.Features.User.Command
             contact = await _contactRepository.AddAsync(contact);
             
             user.IdContact = contact.Id;
+            var md5 = MD5.Create();
+            var password = UTF8Encoding.UTF8.GetBytes(user.Password);
+            var hash = md5.ComputeHash(password);
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+                sBuilder.Append(hash[i].ToString("x2"));
+            user.Password = sBuilder.ToString();
             user = await _userRepository.AddAsync(user);
             return new Response<int>(1, "Sign In operation is a success", HttpResponseTypeEnum.Ok);
         }
