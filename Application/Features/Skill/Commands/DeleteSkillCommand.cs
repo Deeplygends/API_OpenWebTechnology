@@ -35,6 +35,7 @@ namespace Application.Features.Skill.Commands
                 throw new ValidationException(new List<ValidationFailure>() {failure}, HttpResponseTypeEnum.NotFound);
             }
             await _skillRepository.DeleteAsync(skill);
+            
             return new Response<int>(request.Id, "Ressource Deleted", HttpResponseTypeEnum.Ok);
         }
     }

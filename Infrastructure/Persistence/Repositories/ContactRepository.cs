@@ -37,6 +37,7 @@ namespace Infrastructure.Persistence.Repositories
             var linksToDelete = _contactSkills.Where(x => x.IdContact == contact.Id);
             _contactSkills.RemoveRange(linksToDelete);
             _contacts.Remove(contact);
+            await SaveChangesAsync();
         }
 
         public async Task RemoveSkillFromContactAsync(int idContact, int idSkill)
@@ -45,6 +46,7 @@ namespace Infrastructure.Persistence.Repositories
             if(toDelete != null)
             {
                 _contactSkills.Remove(toDelete);
+                await SaveChangesAsync();
             }
         }
     }

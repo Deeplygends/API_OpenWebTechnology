@@ -27,6 +27,7 @@ namespace Infrastructure.Persistence.Repositories
             var linksToDelete = _contactSkills.Where(x => x.IdSkill == skill.Id);
             _contactSkills.RemoveRange(linksToDelete);
             _skills.Remove(skill);
+            await SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<Skill>> GetSkillsByContactId(int id)
